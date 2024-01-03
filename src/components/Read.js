@@ -62,6 +62,7 @@ function Read() {
                     ))}
                 </tbody>
             </table>
+           <Link to={"/"}> <button className='btn btn-success'>Add Data</button></Link>
         </>
     );
 }

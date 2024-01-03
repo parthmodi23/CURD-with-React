@@ -31,7 +31,7 @@ function Edit() {
     const handleUpdate=()=>{
         if (!id||!name||!price) {
             alert("please fill all the filed")
-          }else{
+          }else{}
     
              axios.put(`https://6594fec504335332df81c4f3.mockapi.io/CURD/${id}`, {
                 ProductId: id,
@@ -42,7 +42,7 @@ function Edit() {
             navigate('/'); 
             window.alert('Data updated successfully!');
         
-    };}
+    };
 
     return (
         <div>

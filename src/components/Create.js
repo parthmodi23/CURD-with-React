@@ -3,13 +3,13 @@ import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
 export default function Create() {
 
-    const [id,setId]=useState("")
+    // const [id,setId]=useState("")
     const [name,setName]=useState("")
     const [price,setPrice]=useState("")
     const history =useNavigate()
 
     const handlesubmit=(e)=>{
-    if (!id||!name||!price) {
+    if (!name||!price) {
       alert("please fill all the filed")
     }else{
     
@@ -17,12 +17,12 @@ export default function Create() {
         console.log("click");
         axios.post("https://6594fec504335332df81c4f3.mockapi.io/CURD",
         {
-            ProductId:id,
             ProductName:name,
             ProductPrice:price
 
         })
         .then(()=>{
+            window.alert("data added successfully!")
             history("/read")
         })
 
@@ -32,10 +32,10 @@ export default function Create() {
   return (
     <div>
         
-  <div className="mb-3">
+  {/* <div className="mb-3">
     <label  className="form-label">Product ID</label>
     <input type="text" className="form-control"  aria-describedby="emailHelp" onChange={(e)=>{setId(e.target.value)}}/>
-  </div>
+  </div> */}
   <div className="mb-3">
     <label for="exampleInputPassword1" className="form-label" >Product Name</label>
     <input type="text" className="form-control" onChange={(e)=>{setName(e.target.value)}}/>
