@@ -28,19 +28,21 @@ function Edit() {
         }
     }
 
-    const handleUpdate = async () => {
-        try {
-            await axios.put(`https://6594fec504335332df81c4f3.mockapi.io/CURD/${id}`, {
+    const handleUpdate=()=>{
+        if (!id||!name||!price) {
+            alert("please fill all the filed")
+          }else{
+    
+             axios.put(`https://6594fec504335332df81c4f3.mockapi.io/CURD/${id}`, {
                 ProductId: id,
                 ProductName: name,
                 ProductPrice: price,
             });
             console.log('Data updated successfully!');
-            navigate('/'); // Redirect to home page or appropriate route
-        } catch (error) {
-            console.error('Error updating data:', error);
-        }
-    };
+            navigate('/'); 
+            window.alert('Data updated successfully!');
+        
+    };}
 
     return (
         <div>

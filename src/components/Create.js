@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
-function Create() {
+export default function Create() {
 
     const [id,setId]=useState("")
     const [name,setName]=useState("")
     const [price,setPrice]=useState("")
     const history =useNavigate()
+
     const handlesubmit=(e)=>{
+    if (!id||!name||!price) {
+      alert("please fill all the filed")
+    }else{
+    
         e.preventDefault();
         console.log("click");
         axios.post("https://6594fec504335332df81c4f3.mockapi.io/CURD",
@@ -21,9 +26,8 @@ function Create() {
             history("/read")
         })
 
-       
-
-    }
+    
+    }}
 
   return (
     <div>
@@ -41,7 +45,9 @@ function Create() {
     <input type="text" className="form-control" onChange={(e)=>{setPrice(e.target.value)}}/>
   </div>
 
-  <button type="submit" className="btn btn-primary" onClick={handlesubmit}>Submit</button>
+  <button type="submit" className="btn btn-primary" onClick={
+   handlesubmit
+    }>Submit</button>
  <Link to={"/read"}> <button type="submit" className="btn btn-primary">Read & Update</button></Link>
 
 
@@ -49,4 +55,4 @@ function Create() {
   )
 }
 
-export default Create
+
