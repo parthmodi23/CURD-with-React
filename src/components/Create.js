@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import axios from "axios"
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 function Create() {
 
     const [id,setId]=useState("")
     const [name,setName]=useState("")
-
     const [price,setPrice]=useState("")
     const history =useNavigate()
     const handlesubmit=(e)=>{
@@ -26,10 +25,6 @@ function Create() {
 
     }
 
-
-
-
-    
   return (
     <div>
         
@@ -47,6 +42,8 @@ function Create() {
   </div>
 
   <button type="submit" className="btn btn-primary" onClick={handlesubmit}>Submit</button>
+ <Link to={"/read"}> <button type="submit" className="btn btn-primary">Read & Update</button></Link>
+
 
     </div>
   )

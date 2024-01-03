@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Read() {
     const [data, setData] = useState([]);
@@ -24,6 +25,13 @@ function Read() {
            
     }
 
+    function storevaluelocalstorage(id,Productname,Productprice){
+        localStorage.setItem("id",id)
+        localStorage.setItem("name",Productname)
+        localStorage.setItem("price",Productprice)
+
+    }
+
     return (
         <>
             read operation
@@ -40,12 +48,14 @@ function Read() {
                 <tbody>
                     {data.map((eachdata) => 
                     (
-                        <tr>
+                        <tr key={eachdata.id}>
                             <td>{eachdata.id}</td>
                             <td>{eachdata.ProductName}</td>
                             <td>{eachdata.ProductPrice}</td>
-                            <td><button className="btn-success">Edit</button></td>
-                            <td><button className="btn-danger" onClick={()=>{
+                            <td><Link to={`/edit/${eachdata.id}`}><button className="btn btn-success" onClick={(e)=>{
+                                storevaluelocalstorage(eachdata.id,eachdata.ProductName,eachdata.ProductPrice)
+                            }}>Edit</button></Link></td>
+                            <td><button className="btn btn-danger" onClick={()=>{
                                 handleDelete(eachdata.id); // Pass the ID to handleDelete
                             }}>Remove</button></td>
                         </tr>
