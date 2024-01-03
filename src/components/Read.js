@@ -3,20 +3,25 @@ import React, { useEffect, useState } from 'react';
 
 function Read() {
     const [data, setData] = useState([]);
-
-    useEffect(() => {
+    function getdata(){
         axios
             .get("https://6594fec504335332df81c4f3.mockapi.io/CURD")
             .then((res) => {
                 setData(res.data);
-            }
-            );
-        
+            });
+    }
+
+    useEffect(() => {
+        getdata();
         
     }, []);
-    function handledelete(){
+
+    function handleDelete(id) {
         axios.delete(`https://6594fec504335332df81c4f3.mockapi.io/CURD/${id}`)
-      
+        .then(()=>{
+            getdata();
+        })
+           
     }
 
     return (
@@ -35,13 +40,13 @@ function Read() {
                 <tbody>
                     {data.map((eachdata) => 
                     (
-                        <tr key={eachdata.id}>
-                            <td>{eachdata.ProductId}</td>
+                        <tr>
+                            <td>{eachdata.id}</td>
                             <td>{eachdata.ProductName}</td>
                             <td>{eachdata.ProductPrice}</td>
                             <td><button className="btn-success">Edit</button></td>
                             <td><button className="btn-danger" onClick={()=>{
-                                handledelete(eachdata.id)
+                                handleDelete(eachdata.id); // Pass the ID to handleDelete
                             }}>Remove</button></td>
                         </tr>
                     ))}
